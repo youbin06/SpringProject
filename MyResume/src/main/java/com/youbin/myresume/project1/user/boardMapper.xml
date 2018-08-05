@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.youbin.myresume.project1.user">
+ 
+ 	<select id="getList" parameterType="java.util.HashMap" resultType="BoardDTO">
+ 		SELECT * FROM BOARD WHERE boardGroup <![CDATA[ > ]]> (SELECT MAX(boardGroup) FROM board) - ${pageNumber1} AND boardGroup <![CDATA[ <= ]]> (SELECT MAX(boardGroup) FROM board) - ${pageNumber2} ORDER BY boardGroup DESC, boardSequence ASC 
+ 	</select>
+ 	
+ 	<select id="targetPage" parameterType="int" resultType="int">
+ 		SELECT COUNT(boardGroup) FROM BOARD WHERE boardGroup <![CDATA[ > ]]> #{pageNumber}
+ 	</select>
+ 	
+ 	<insert id="write" parameterType="java.util.HashMap">
+ 		INSERT INTO BOARD VALUES('${userID}', NVL((SELECT MAX(boardID) + 1 FROM BOARD), 1), '${boardTitle}', '${boardContent}', sysdate, 0, '${boardFile}', '${boardRealFile}', NVL((SELECT MAX(boardGroup) + 1 FROM BOARD), 0), 0, 0, 1)
+ 	</insert>
+ 	
+ 	<select id="getBoard" parameterType="String" resultType="BoardDTO">
+ 		SELECT * FROM BOARD WHERE boardID = #{boardID}
+ 	</select>
+ 	
+ 	<update id="hit" parameterType="String">
+ 		UPDATE BOARD SET boardHIT = boardHIT + 1 WHERE boardID = #{boardID}
+ 	</update>
+ 	
+ 	<select id="getRealFile" parameterType="String" resultType="BoardDTO">
+ 		SELECT boardRealFile FROM BOARD WHERE boardID = #{boardID}
+ 	</select>
+ 	
+ 	<update id="delete" parameterType="String">
+ 		UPDATE board SET boardAvailable = 0 WHERE boardID = #{boardID}
+ 	</update>
+ 	
+ 	<select id="getFile" parameterType="String" resultType="BoardDTO">
+ 		SELECT boardFile FROM BOARD WHERE boardID = #{boardID}
+ 	</select>
+ 	
+ 	<update id="updateBoard" parameterType="java.util.HashMap">
+ 		UPDATE BOARD SET boardTitle = '${boardTitle}', boardContent = '${boardContent}', boardFile = '${boardFile}', boardRealFile = '${boardRealFile}' WHERE boardID = '${boardID}'
+ 	</update>
+ 	
+ </mapper>

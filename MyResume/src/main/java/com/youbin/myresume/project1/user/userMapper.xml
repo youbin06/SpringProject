@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.youbin.myresume.project1.user">
+ 	
+ 		<select id="registerCheck" parameterType="String" resultType="UserDTO">
+ 			SELECT * FROM userInfo WHERE userID = #{userID}
+ 		</select>
+ 	
+ 		<insert id="register" parameterType="UserDTO">
+ 			INSERT INTO userInfo VALUES(#{userID},#{userPassword,jdbcType=VARCHAR},#{userName},#{userAge,jdbcType=INTEGER},#{userGender},#{userEmail},#{userProfile,jdbcType=VARCHAR})
+ 		</insert>	
+ 		
+ 		<update id="update" parameterType="UserDTO">
+ 			UPDATE userInfo SET userPassword = #{userPassword}, userName = #{userName}, userAge = #{userAge}, userGender = #{userGender}, userEmail = #{userEmail} WHERE userID = #{userID}
+ 		</update>
+ 		
+ 		<update id="profile" parameterType="java.util.HashMap">
+ 			UPDATE userInfo SET userProfile = '${fileName}' WHERE userID = '${userID}'
+ 		</update>
+ 		
+ 		<select id="getProfile" parameterType="String" resultType="UserDTO">
+ 			SELECT userProfile FROM userInfo WHERE userID = #{userID}
+ 		</select>
+ 	
+	</mapper>
