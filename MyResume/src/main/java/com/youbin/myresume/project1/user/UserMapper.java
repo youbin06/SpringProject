@@ -67,12 +67,12 @@ public class UserMapper {
 		UserDTO dto = null;
 		dto = sqlSession.selectOne("getProfile", userID);
 		if(dto == null) {
-			return "http://localhost:8080/myresume/resources/images/icon.png";
+			return "http://192.168.51.87:8080/myresume/resources/images/icon.png";
 		}else {
 			if(dto.getUserProfile().equals("")) {
-				return "http://localhost:8080/myresume/resources/images/icon.png";
+				return "http://192.168.51.87:8080/myresume/resources/images/icon.png";
 			}else {
-				return "http://localhost:8080/myresume/resources/upload/" + dto.getUserProfile();
+				return "http://192.168.51.87:8080/myresume/resources/upload/" + dto.getUserProfile();
 			}
 		}
 	}
