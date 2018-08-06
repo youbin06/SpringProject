@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.youbin.myresume.project1.user">
+ 	
+ 		<insert id="anonymousSubmit" parameterType="java.util.HashMap">
+ 			INSERT INTO anonymous_chat VALUES('${chatName}', '${chatContent}', sysdate, anonymous_seq.nextval)
+ 		</insert>
+ 		
+ 		<select id="getAnonymousChatList" parameterType="String" resultType="AnonymousDTO">
+ 			SELECT * FROM anonymous_chat WHERE chatTime > #{nowTime} ORDER BY chatTime
+ 		</select>
+ 		
+ 		<select id="getAnonymousChatListByRecent" parameterType="int" resultType="AnonymousDTO">
+ 			SELECT * FROM anonymous_chat WHERE chatID > (SELECT MAX(chatID) - #{number} FROM anonymous_chat) ORDER BY chatTime
+ 		</select>
+ 		
+ 		<select id="getAnonymousChatListBychatID" parameterType="String" resultType="AnonymousDTO">
+ 			SELECT * FROM anonymous_chat WHERE chatID > #{chatID} ORDER BY chatTime
+ 		</select>
+	</mapper>

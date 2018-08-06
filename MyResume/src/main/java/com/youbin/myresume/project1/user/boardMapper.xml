@@ -40,4 +40,12 @@
  		UPDATE BOARD SET boardTitle = '${boardTitle}', boardContent = '${boardContent}', boardFile = '${boardFile}', boardRealFile = '${boardRealFile}' WHERE boardID = '${boardID}'
  	</update>
  	
+ 	<update id="replyUpdate" parameterType="BoardDTO">
+ 		UPDATE BOARD SET boardSequence = boardSequence + 1 WHERE boardGroup = #{boardGroup} AND boardSequence > #{boardSequence}
+ 	</update>
+ 	
+ 	<insert id="reply" parameterType="java.util.HashMap">
+ 		INSERT INTO BOARD VALUES('${userID}', NVL((SELECT MAX(boardID) + 1 FROM BOARD), 1), '${boardTitle}', '${boardContent}', sysdate, 0, '${boardFile}', '${boardRealFile}', ${boardGroup}, ${boardSequence}, ${boardLevel}, 1)
+ 	</insert>
+ 	
  </mapper>

@@ -82,5 +82,24 @@ public class BoardMapper {
 		
 		sqlSession.update("updateBoard", map);
 	}
+	
+	public void replyUpdate(BoardDTO parent) {
+		sqlSession.update("replyUpdate", parent);
+	}
+	
+	public void reply(String userID, String boardTitle, String boardContent, String boardFile, String boardRealFile, BoardDTO parent ) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("userID", userID);
+		map.put("boardTitle", boardTitle);
+		map.put("boardContent", boardContent);
+		map.put("boardFile", boardFile);
+		map.put("boardRealFile", boardRealFile);
+		map.put("boardGroup", parent.getBoardGroup()+"");
+		int boardSequence = parent.getBoardSequence() + 1;
+		map.put("boardSequence", boardSequence+"");
+		int boardLevel = parent.getBoardLevel() + 1;
+		map.put("boardLevel", boardLevel+"");
+		sqlSession.insert("reply", map);
+	}
 
 }
