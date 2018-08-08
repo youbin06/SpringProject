@@ -51,8 +51,10 @@ public class Project1UserController {
 	}
 	
 	@RequestMapping(value = "/join.do", method=RequestMethod.POST)
-	public String joinUser(@ModelAttribute UserDTO dto, HttpServletRequest request, HttpServletResponse response){
+	public String joinUser(@ModelAttribute UserDTO dto, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		String userPassword1 = request.getParameter("userPassword1");
 		String userPassword2 = request.getParameter("userPassword2");
 		

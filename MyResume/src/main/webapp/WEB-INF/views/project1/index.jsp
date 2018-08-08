@@ -101,8 +101,8 @@
 	<div class="container">
 		<div class="jumbotron" style="background-image: url(<c:url value="/resources/images/jumbotron.jpg"/>)">
 			<div class="container">
-				<h1>웹사이트 소개</h1>
-				<p>이 웹사이트는 회원전용 메신저와 게시판 서비스를 제공하고 있습니다.<br>
+				<h1 class="text-center">웹사이트 소개</h1>
+				<p class="text-center">이 웹사이트는 회원전용 메신저와 게시판 서비스를 제공하고 있습니다.<br>
 				익명채팅방은 회원/비회원에게 서비스를 제공하며, 익명성을 보장합니다.</p> 
 			</div>
 		</div>

@@ -13,7 +13,12 @@ public class HomeController {
 	
 	@RequestMapping(value = "project1.app")
 	public String project1() {
-		return "/project1/index";
+		return "project1/index";
+	}
+	
+	@RequestMapping(value ="project2.app")
+	public String project2() {
+		return "project2/index";
 	}
 	
 }

@@ -5,7 +5,14 @@
 <html lang="en">
 
   <head>
-
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-123510889-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'UA-123510889-1');
+		</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -231,24 +238,23 @@
         <div class="my-auto">
           <h2 class="mb-5">Awards &amp; Certifications</h2>
           <ul class="fa-ul mb-0" style="font-size: 20px;">
-            <li>
-              <i class="fa-li fa fa-user text-warning"></i>
-              <a href="project1.app" target="_blank">Join / Login Service</a></li>
-            <li>
-              <i class="fa-li fa fa-user text-warning"></i>
-              <a href="project1.app" target="_blank">Board Service with file-upload</a></li>
-            <li>
-              <i class="fa-li fa fa-shield text-warning"></i>
-              <a href="project1.app" target="_blank">Live Chatting Service.</a></li>
-            <li>
-              <i class="fa-li fa fa-user text-warning"></i>
-              <a href="project1.app" target="_blank">Anonymous Chatting Service.</a></li>
-            <li>
-              <i class="fa-li fa fa-map text-warning"></i>
-              <a href="#" target="_blank">Lecture Assement System</a></li>
-            <li>
-              <i class="fa-li fa fa-youtube text-warning"></i>
-              <a href="#" target="_blank">Youtube lecture Service.</a></li>  
+          	<li>
+          		<a href="project1.app" target="_blank">1. Project #1(Click for the project #1)</a>
+          		<ul class="fa-ul mb-0" style="font-size: 20px;">
+          			<li><i class="fa-li fa fa-user text-warning"></i>Join / Login Service</li>
+		            <li><i class="fa-li fa fa-user text-warning"></i>Board Service with file-upload</li>
+		            <li><i class="fa-li fa fa-shield text-warning"></i>Live Chatting Service.</li>
+		            <li><i class="fa-li fa fa-user text-warning"></i>Anonymous Chatting Service.</li>
+          		</ul>
+          	</li>	
+          	<li>
+          		<a href="project2.app" target="_blank">2. Project #2(Click for the project #2)</a>
+          		<ul class="fa-ul mb-0" style="font-size: 20px;">
+          			<li><i class="fa-li fa fa-user text-warning"></i>Join / Login Service</li>
+          			<li><i class="fa-li fa fa-map text-warning"></i>Lecture Assessment System</li>
+            		<li><i class="fa-li fa fa-youtube text-warning"></i>Youtube lecture Service.</li>  
+          		</ul>
+          	</li>
           </ul>
         </div>
       </section>
@@ -264,7 +270,8 @@
 
     <!-- Custom scripts for this template -->
     <script src="<c:url value="/resources/js/resume.min.js"/>"></script>
-
+	
+	
   </body>
 
 </html>

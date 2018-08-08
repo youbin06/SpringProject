@@ -102,23 +102,25 @@
 		}
 		function addChat(chatName, chatContent, chatTime){
 			if(chatName == '나') {
-				$('#chatList').append('<div class="row">' +
+				$('#chatList').append('<div class="row" style="background-color:#fdffcc;">' +
 						'<div class="col-lg-12">' +
 						'<div class="media">' +
-						'<a class="pull-left" href="#">' +
+						'<a class="pull-right">' +
 						'<img class="media-object img-circle" style="width: 70px; height: 70px;" src="<%= fromProfile%>" alt="">' +
 						'</a>' +
 						'<div class="media-body">' +
 						'<h4 class="media-heading">' +
-						chatName +
-						'<span class="samll pull-right">' +
-						chatTime +
+						'<span class="small pull-left">' +
+						chatTime + 
 						'</span>' +
+						'<h4 class="media-heading pull-right">' +
+						chatName +
 						'</h4>' +
-						'<p>' +
-						chatContent +
-						'</p>' +
+						'</h4>' +
 						'</div>' +
+						'<p class="pull-right">' +
+						chatContent + 
+						'</p>' +
 						'</div>' +
 						'</div>' +
 						'</div>' +
@@ -127,13 +129,13 @@
 				$('#chatList').append('<div class="row">' +
 						'<div class="col-lg-12">' +
 						'<div class="media">' +
-						'<a class="pull-left" href="#">' +
+						'<a class="pull-left" data-target="#profileModal" data-toggle="modal">' +
 						'<img class="media-object img-circle" style="width: 70px; height: 70px;" src="<%= toProfile%>" alt="">' +
 						'</a>' +
 						'<div class="media-body">' +
 						'<h4 class="media-heading">' +
 						chatName +
-						'<span class="samll pull-right">' +
+						'<span class="small pull-right">' +
 						chatTime +
 						'</span>' +
 						'</h4>' +
@@ -152,7 +154,7 @@
 		function getInfiniteChat(){
 			setInterval(function(){
 				chatListFunction(lastID);
-			}, 3000);
+			}, 2000);
 		}
 		function getUnread(){
 			$.ajax({
@@ -295,6 +297,8 @@
 			</div>
 		</div>
 	</div>
+	
+	
 	<script>
 		$('#messageModal').modal("show");
 	</script>
@@ -311,5 +315,22 @@
 			getInfiniteUnread();
 		});
 	</script>
+	
+	<div class="row">
+		<div class="modal" id="profileModal" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						프로필 보기
+						<button class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body" style="text-align: center;">
+						<img src="<%=toProfile %>" style="width: 500px; height: 500px;">
+						<h1><%=toID %></h1> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

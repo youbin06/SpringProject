@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.youbin.myresume.project1.user">
+ 	
+ 		<select id="passwordCheck" parameterType="String" resultType="String">
+ 			SELECT userPassword FROM user2 WHERE userID = #{userID}
+ 		</select>
+
+ 		<insert id="registerUser2" parameterType="User2DTO">
+ 			INSERT INTO user2 VALUES(#{userID,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userEmailHash,jdbcType=VARCHAR}, #{userEmailChecked,jdbcType=VARCHAR})
+ 		</insert>
+ 		
+ 		<select id="getUserEmailChecked" parameterType="String" resultType="String">
+ 			SELECT userEmailChecked FROM user2 WHERE userID = #{userID}
+ 		</select>
+ 		
+ 		<update id="setUserEmailChecked" parameterType="String" >
+ 			UPDATE user2 SET userEmailChecked = '1' WHERE userID = #{userID}
+ 		</update>
+ 		
+ 		<select id="getUserEmail" parameterType="String" resultType="String">
+ 			SELECT userEmail FROM user2 WHERE userID = #{userID}
+ 		</select>
+	</mapper>
