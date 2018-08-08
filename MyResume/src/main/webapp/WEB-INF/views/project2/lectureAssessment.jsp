@@ -2,6 +2,19 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+	<%
+		String userID = null;
+		if(session.getAttribute("userID") != null) {
+			userID = (String)session.getAttribute("userID");
+		}
+		
+		if(userID == null){
+			session.setAttribute("messageType", "오류 메시지");
+			session.setAttribute("messageContent", "현재 로그인이 되어 있지 않습니다.");
+			response.sendRedirect("loginForm.project2");
+			return;
+		}
+	%>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=deive-width, initial-scale=1">
@@ -40,14 +53,14 @@
 						</ul>
 					</li>
 					<li class="active"><a href="lectureAssessment.project2">강의평가</a></li>
+					<li><a href="#">고객센터</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
 							aria-haspopup="true" aria-expanded="false">접속하기<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="loginForm.project2">로그인</a></li>
-							<li><a href="registerForm.project2">회원가입</a></li>
+							<li><a href="logout.project2">로그아웃</a></li>
 						</ul>
 					</li>
 				</ul>

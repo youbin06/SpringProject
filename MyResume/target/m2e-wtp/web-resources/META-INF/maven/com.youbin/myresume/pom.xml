@@ -147,6 +147,13 @@
 		    <artifactId>activation</artifactId>
 		    <version>1.1.1</version>
 		</dependency>
+		
+		<!-- JavaMail -->
+		<dependency>
+   			<groupId>com.sun.mail</groupId>
+    		<artifactId>javax.mail</artifactId>
+    		<version>1.6.0</version>
+		</dependency>
 				
 		
 		

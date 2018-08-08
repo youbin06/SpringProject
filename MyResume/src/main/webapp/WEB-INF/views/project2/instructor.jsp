@@ -2,6 +2,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<%
+		String userID = null;
+		if(session.getAttribute("userID") != null) {
+			userID = (String)session.getAttribute("userID");
+		}
+%>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=deive-width, initial-scale=1">
@@ -10,6 +16,7 @@
 	<title>Spring Final Project #2</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="<c:url value="/resources/js/bootstrap.js"/>"></script>
+	<script src="https://unpkg.com/popper.js@1.12.9/dist/umd/popper.min.js"></script>
 	<title>Spring Final Project #2</title>
 </head>
 <body>
@@ -39,7 +46,11 @@
 						</ul>
 					</li>
 					<li><a href="lectureAssessment.project2">강의평가</a></li>
+					<li><a href="#">고객센터</a></li>
 				</ul>
+				<%
+					if(userID == null){
+				%>
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -50,6 +61,21 @@
 						</ul>
 					</li>
 				</ul>
+				<%
+					} else {
+				%>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+							aria-haspopup="true" aria-expanded="false">접속하기<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="logout.project2">로그아웃</a></li>
+						</ul>
+					</li>
+				</ul>
+				<%
+					}
+				%>
 			</div>			
 		</div>
 	</nav>
