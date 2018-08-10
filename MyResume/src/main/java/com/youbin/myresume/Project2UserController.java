@@ -107,7 +107,7 @@ public class Project2UserController {
 		String from = "qordbqls06@gmail.com";
 		String to = user2Mapper.getUserEmail(userID);
 		String subject = "강의평가를 위한 이메일 인증 메일입니다.";
-		String content  = "다음 링크에 접속하여 이메일 인증을 진행하세요." + "<a href='" + host + 
+		String content  = "다음 링크에 접속하여 이메일 인증을 진행하세요." + "<br><a href='" + host + 
 				"emailCheckAction?code="+ new SHA256().getSHA256(to) + "'>이메일 인증하기</a>";
 		
 		Properties p = new Properties();

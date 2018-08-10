@@ -84,7 +84,7 @@
 				<li><a href="anonymousChat.do">익명채팅방</a></li>
 			</ul>
 			<%
-					if(userID == null){
+				if(userID == null){
 			%>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">

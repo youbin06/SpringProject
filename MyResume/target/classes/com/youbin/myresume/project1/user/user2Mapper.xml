@@ -13,7 +13,7 @@
  		</insert>
  		
  		<select id="getUserEmailChecked" parameterType="String" resultType="String">
- 			SELECT userEmailChecked FROM user2 WHERE userID = #{userID}
+ 			SELECT userEmailChecked FROM user2 WHERE userID = #{userID,jdbcType=VARCHAR}
  		</select>
  		
  		<update id="setUserEmailChecked" parameterType="String" >

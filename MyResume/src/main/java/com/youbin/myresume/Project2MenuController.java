@@ -41,18 +41,7 @@ public class Project2MenuController {
 		return "project2/registerForm";
 	}
 	
-	@RequestMapping(value = "/lectureAssessment.project2")
-	public String lectureAssessment(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		HttpSession session = request.getSession();
-		String userID = (String)session.getAttribute("userID");
-		boolean emailChecked = user2Mapper.getUserEmailChecked(userID);
-		if(emailChecked == false) {
-			return "project2/user/emailSendConfirm";
-		}
-		return "project2/lectureAssessment";
-	}
+	
 	
 	@RequestMapping(value ="/logout.project2")
 	public String logout() {
