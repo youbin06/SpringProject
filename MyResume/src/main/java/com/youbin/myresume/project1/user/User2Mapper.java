@@ -13,7 +13,11 @@ public class User2Mapper {
 		String checkPassword = "";
 		checkPassword = sqlSession.selectOne("passwordCheck", userID);
 		
-		if(!checkPassword.equals("")) {
+		System.out.println(checkPassword);
+		System.out.println(checkPassword);
+		System.out.println(checkPassword);
+		
+		if(checkPassword != null) {
 			if(checkPassword.equals(userPassword)) {
 				return 1; //login success
 			}else {
@@ -30,7 +34,7 @@ public class User2Mapper {
 	public boolean getUserEmailChecked(String userID) {
 		String userEmailChecked = "";
 		userEmailChecked = sqlSession.selectOne("getUserEmailChecked", userID);
-		if(!userEmailChecked.equals("")) {
+		if(userEmailChecked != null) {
 			if(userEmailChecked.equals("1")) {
 				return true;
 			}else {
@@ -48,7 +52,7 @@ public class User2Mapper {
 	public String getUserEmail(String userID) {
 		String userEmail = "";
 		userEmail = sqlSession.selectOne("getUserEmail", userID);
-		if(!userEmail.equals("")) {
+		if(userEmail != null) {
 			return userEmail;
 		}
 		return null;

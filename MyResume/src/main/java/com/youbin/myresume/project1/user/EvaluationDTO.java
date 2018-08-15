@@ -28,13 +28,13 @@ public class EvaluationDTO {
 		this.userID = userID;
 	}
 	public String getLectureName() {
-		return lectureName;
+		return lectureName.replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
 	}
 	public void setLectureName(String lectureName) {
 		this.lectureName = lectureName;
 	}
 	public String getProfessorName() {
-		return professorName;
+		return professorName.replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
 	}
 	public void setProfessorName(String professorName) {
 		this.professorName = professorName;
@@ -58,13 +58,13 @@ public class EvaluationDTO {
 		this.lectureDivide = lectureDivide;
 	}
 	public String getEvaluationTitle() {
-		return evaluationTitle;
+		return evaluationTitle.replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
 	}
 	public void setEvaluationTitle(String evaluationTitle) {
 		this.evaluationTitle = evaluationTitle;
 	}
 	public String getEvaluationContent() {
-		return evaluationContent;
+		return evaluationContent.replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>");
 	}
 	public void setEvaluationContent(String evaluationContent) {
 		this.evaluationContent = evaluationContent;

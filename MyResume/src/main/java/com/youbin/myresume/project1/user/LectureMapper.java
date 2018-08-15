@@ -26,10 +26,11 @@ public class LectureMapper {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("lectureDivide", "%"+lectureDivide+"%");
 		map.put("search", "%"+search+"%");
-		int pageNumber1 = pageNumber * 5;
-		int pageNumber2 = pageNumber * 5 + 5;
+		int pageNumber1 = (pageNumber * 5 + 1);
+		int pageNumber2 = pageNumber1 + 4;
 		map.put("pageNumber1", pageNumber1+"");
 		map.put("pageNumber2", pageNumber2+"");
+
 		if(searchType.equals("최신순")) {
 			list = sqlSession.selectList("evaluationListByRecent", map);
 			evaluationList = (ArrayList<EvaluationDTO>) list;
@@ -52,17 +53,46 @@ public class LectureMapper {
 		map.put("search", "%"+search+"%");
 		int pageNumber1 = (pageNumber + 1) * 5;
 		map.put("pageNumber1", pageNumber1+"");
+		
 		if(searchType.equals("최신순")) {
 			list = sqlSession.selectList("nextPageByRecent", map);
-			if(list == null) {
-				return 0;
-			}
+			if(list.isEmpty()) return 0;
 		}else {
 			list = sqlSession.selectList("nextPageByLike", map);
-			if(list == null) {
+			if(list.isEmpty()) return 0;
+		}
+		
+		return 1;
+	}
+	
+	public int likeCount(String evaluationID) {
+		return sqlSession.update("likeCount", evaluationID);
+	}
+	
+	public int deleteAssessment(String evaluationID) {
+		return sqlSession.delete("deleteAssessment", evaluationID);
+	}
+	
+	public String getUserID(String evaluationID) {
+		
+		return sqlSession.selectOne("getUserID", evaluationID);
+	}
+	
+	public int like(String userID, String evaluationID, String userIP) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("userID", userID);
+		map.put("evaluationID", evaluationID);
+		map.put("userIP", userIP);
+		List<String> list = null;
+		list = sqlSession.selectList("duplicationLike", evaluationID);
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).equals(userID)) {
 				return 0;
 			}
 		}
-		return 1;
+		
+		return sqlSession.insert("like", map);
+		
+
 	}
 }

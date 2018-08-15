@@ -46,11 +46,12 @@ public class Project2UserController {
 		}else if(result == 0){
 			request.getSession().setAttribute("messageType", "오류 메시지");
 			request.getSession().setAttribute("messageContent", "비밀번호를 다시 확인하세요.");
-			return "project2/login";
+			return "project2/loginForm";
 		}else if(result == -1) {
+		
 			request.getSession().setAttribute("messageType", "오류 메시지");
 			request.getSession().setAttribute("messageContent", "아이디가 존재하지 않습니다.");
-			return "project2/login";
+			return "project2/loginForm";
 		}
 		
 		return "project2/index";

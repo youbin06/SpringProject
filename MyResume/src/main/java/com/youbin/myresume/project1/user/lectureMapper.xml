@@ -16,11 +16,32 @@
  			SELECT * FROM (SELECT rownum rn, A.* from (SELECT * from evaluation WHERE lectureDivide like '${lectureDivide}' AND concat(lectureName, concat(professorName, concat(evaluationTitle, evaluationContent))) like '${search}' ORDER by likeCount DESC)A) WHERE rn between ${pageNumber1} and ${pageNumber2}
  		</select>
  		
- 		<select id="nextPageByRecent" parameterType="int" resultType="EvaluationDTO">
+ 		<select id="nextPageByRecent" parameterType="java.util.HashMap" resultType="EvaluationDTO">
  			SELECT * FROM (SELECT rownum rn, A.* from (SELECT * from evaluation WHERE lectureDivide like '${lectureDivide}' AND concat(lectureName, concat(professorName, concat(evaluationTitle, evaluationContent))) like '${search}' ORDER by evaluationID DESC)A) WHERE rn > ${pageNumber1} 
  		</select>
  		
- 		<select id="nextPageByLike" parameterType="int" resultType="EvaluationDTO">
+ 		<select id="nextPageByLike" parameterType="java.util.HashMap" resultType="EvaluationDTO">
  			SELECT * FROM (SELECT rownum rn, A.* from (SELECT * from evaluation WHERE lectureDivide like '${lectureDivide}' AND concat(lectureName, concat(professorName, concat(evaluationTitle, evaluationContent))) like '${search}' ORDER by likeCount DESC)A) WHERE rn > ${pageNumber1} 
  		</select>
+ 		
+ 		<update id="likeCount" parameterType="String">
+ 			UPDATE evaluation set likeCount = likeCount + 1 WHERE evaluationID = #{evaluationID}
+ 		</update>
+ 		
+ 		<delete id="deleteAssessment" parameterType="String">
+ 			DELETE FROM evaluation WHERE evaluationID = #{evaluationID}
+ 		</delete>
+ 		
+ 		<select id="getUserID" parameterType="String" resultType="String">
+ 			SELECT userID FROM evaluation WHERE evaluationID = #{evaluationID}
+ 		</select>
+ 		
+ 		<insert id="like" parameterType="java.util.HashMap">
+ 			INSERT INTO likey VALUES('${userID}', ${evaluationID}, '${userIP}')
+ 		</insert>
+ 		
+ 		<select id="duplicationLike" parameterType="String" resultType="String">
+ 			SELECT userID FROM likey WHERE evaluationID = #{evaluationID}
+ 		</select>
+ 		
 	</mapper>

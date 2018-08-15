@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -42,6 +43,11 @@
 		String searchType ="최신순";
 		if(request.getParameter("searchType") != null){
 			searchType = request.getParameter("searchType"); 
+		}
+		
+		String nextPage = request.getAttribute("nextPage").toString();
+		if(nextPage == null || nextPage.equals("")){
+			nextPage = "0";
 		}
 				
 	%>
@@ -162,8 +168,8 @@
 								<span style="color: green;">(추천: ${evaluationList.likecount })</span>
 							</div>
 							<div class="col-sm-4 text-right">
-								<a onclick="return confirm('추천하시겠습니까?')" href="./">추천</a>
-								<a onclick="return confirm('삭제하시겠습니까?')" href="./">삭제</a>
+								<a onclick="return confirm('추천하시겠습니까?')" href="./likeAssessment?evaluationID=${evaluationList.evaluationID }">추천</a>
+								<a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAssessment?evaluationID=${evaluationList.evaluationID }">삭제</a>
 							</div>
 						</div>
 					</div>
@@ -171,8 +177,23 @@
 				<br>
 			</c:forEach>
 		</c:if>
+		<%
+		if(pageNumber > 0){
+		%>
+			<a href="./evaluationSearch.project2?lectureDivide=<%=URLEncoder.encode(lectureDivide,"UTF-8")%>
+			&searchType=<%=URLEncoder.encode(searchType,"UTF-8")%>&search=<%=URLEncoder.encode(search,"UTF-8")%>
+			&pageNumber=<%=pageNumber - 1%>" class="btn btn-success">이전</a>
+		<%		
+		} if(nextPage.equals("1")){
+		%>
+			<a href="./evaluationSearch.project2?lectureDivide=<%=URLEncoder.encode(lectureDivide,"UTF-8")%>
+			&searchType=<%=URLEncoder.encode(searchType,"UTF-8")%>&search=<%=URLEncoder.encode(search,"UTF-8")%>
+			&pageNumber=<%=pageNumber + 1%>" class="btn btn-success pull-right">다음</a>
+		<%	
+		}
+		%>
 	</section>
-
+	<br>
 	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
